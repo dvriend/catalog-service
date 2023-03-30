@@ -1,0 +1,3 @@
+curl -d '{"author": "Lyra Silverstar", "isbn": "1234567891", "price": 9.9, "title": "Northern Lights"}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:9001/books
