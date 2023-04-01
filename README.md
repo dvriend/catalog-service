@@ -7,20 +7,20 @@ by [Thomas Vitale](https://www.thomasvitale.com).
 
 ## REST API
 
-| Endpoint	      | Method   | Req. body  | Status | Resp. body     | Description    		   	     |
-|:---------------:|:--------:|:----------:|:------:|:--------------:|:-------------------------------|
-| `/books`        | `GET`    |            | 200    | Book[]         | Get all the books in the catalog. |
-| `/books`        | `POST`   | Book       | 201    | Book           | Add a new book to the catalog. |
-|                 |          |            | 422    |                | A book with the same ISBN already exists. |
-| `/books/{isbn}` | `GET`    |            | 200    | Book           | Get the book with the given ISBN. |
-|                 |          |            | 404    |                | No book with the given ISBN exists. |
-| `/books/{isbn}` | `PUT`    | Book       | 200    | Book           | Update the book with the given ISBN. |
-|                 |          |            | 201    | Book           | Create a book with the given ISBN. |
-| `/books/{isbn}` | `DELETE` |            | 204    |                | Delete the book with the given ISBN. |
+|    Endpoint	    |  Method  | Req. body | Status | Resp. body | Description    		   	                     |
+|:---------------:|:--------:|:---------:|:------:|:----------:|:------------------------------------------|
+|    `/books`     |  `GET`   |           |  200   |   Book[]   | Get all the books in the catalog.         |
+|    `/books`     |  `POST`  |   Book    |  201   |    Book    | Add a new book to the catalog.            |
+|                 |          |           |  422   |            | A book with the same ISBN already exists. |
+| `/books/{isbn}` |  `GET`   |           |  200   |    Book    | Get the book with the given ISBN.         |
+|                 |          |           |  404   |            | No book with the given ISBN exists.       |
+| `/books/{isbn}` |  `PUT`   |   Book    |  200   |    Book    | Update the book with the given ISBN.      |
+|                 |          |           |  201   |    Book    | Create a book with the given ISBN.        |
+| `/books/{isbn}` | `DELETE` |           |  204   |            | Delete the book with the given ISBN.      |
 
 ## Useful Commands
 
-| Gradle Command	                      | Description                                   |
+| Maven Command	                       | Description                                   |
 |:-------------------------------------|:----------------------------------------------|
 | `./mvnw -DskipTests spring-boot:run` | Run the application.                          |
 | `./mvnw -DskipTests package`         | Build the application.                        |
