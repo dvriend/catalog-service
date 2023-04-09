@@ -1,0 +1,35 @@
+// Curl
+
+//create new Book
+curl -d '{"author": "Lyric Platinumstar", "isbn": "1234567893", "price": 9.9, "title": "Northernwestern Lights"}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:9001/books
+
+//create new Book without title and with invalid ISBN
+curl -d '{"author": "Jon Snow", "isbn": "123ABC456Z", "price": 9.90, "title": ""}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:9001/books
+
+Chapter 4
+
+curl http://localhost:8888/catalog-service/default
+curl http://localhost:8888/catalog-service/prod
+
+curl -X POST http://localhost:9001/actuator/refresh
+
+
+// Maven
+./mvnw test -Dtest="BookRepositoryJdbcTests"
+
+./mvnw test -Dtest="CatalogServiceApplicationTests"
+
+
+// docker
+ch 5.1.2
+docker run -d \
+--name polar-postgres \
+-e POSTGRES_USER=user \
+-e POSTGRES_PASSWORD=password \
+-e POSTGRES_DB=polardb_catalog \
+-p 5432:5432 \
+postgres:14.4
