@@ -1,7 +1,7 @@
 // Curl
 
 //create new Book
-curl -d '{"author": "Lyric Platinumstar", "isbn": "1234567893", "price": 9.9, "title": "Northernwestern Lights"}' \
+curl -d '{"author": "Lyric Platinumstar", "isbn": "1234567893", "price": 9.9, "title": "Northernwestern Lights", "publisher": "SolarFlare"}' \
 -H "Content-Type: application/json" \
 -X POST http://localhost:9001/books
 
