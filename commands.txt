@@ -56,3 +56,51 @@ docker run -d \
   -e SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog \
   -e SPRING_PROFILES_ACTIVE=testdata \
   catalog-service
+
+ch 6.2.4, p 199
+  docker run -d \
+    --name catalog-service \
+    --net catalog-network \
+    -p 9001:9001 \
+    -e SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog \
+    -e SPRING_PROFILES_ACTIVE=testdata \
+    catalog-service:0.0.1-SNAPSHOT
+
+docker rm -f catalog-service polar-postgres
+
+docker network rm catalog-network
+
+Maven build image examples
+./mvnw spring-boot:build-image -DregistryUsername=replaceusername -DregistryToken=replacetoken
+
+//Replace gradle in listing 6.10, p 210
+./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+
+
+// Issue:  how to pass values for username and password from commit-stage.yml
+mvn spring-boot:build-image \
+         -Ddocker.publishRegistry.username=user \
+         -Ddocker.publishRegistry.password=secret \
+         -Ddocker.publishRegistry.url=docker.example.com \
+         -Dspring-boot.build-image.publish=true \
+         -Dspring-boot.build-image.imageName=docker.example.com/library/my-app:v1
+
+<project>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <docker>
+                        <publishRegistry>
+                            <url>${docker.publishRegistry.url}</url>
+                            <username>${docker.publishRegistry.username}</username>
+                            <password>${docker.publishRegistry.password}</password>
+                        </publishRegistry>
+                    </docker>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
