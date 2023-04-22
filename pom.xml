@@ -104,7 +104,7 @@
 						<profile>testdata</profile>
 					</profiles>
 					<image>
-						<name>ghcr.io/dvriend/${project.artifactId}</name>
+						<name>${project.artifactId}</name>
 					</image>
 				</configuration>
 			</plugin>
