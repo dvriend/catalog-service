@@ -82,3 +82,54 @@ p. 237.8
 ./mvnw spring-boot:build-image
 minikube image load catalog-service --profile polar
 
+MiniKube
+
+ 606  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+  607  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+  609  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+  615  minikube start
+  618  minikube stop
+  619  minikube start --cpus 2 --memory 4g --driver docker --profile polar
+  642  minikube stop
+  643  minikube start --cpus 2 --memory 4g --driver docker --profile polar
+  656  minikube image load catalog-service --profile polar
+  668  minikube image load catalog-service --profile polar
+  717  minikube stop
+ 
+kubectl
+  dvriend@djv-dell-xps:~$ history | grep kubectl
+  616  kubectl get po -A
+  617  kubectl get nodes
+  620  kubectl get nodes
+  621  kubectl config get-contexts
+  622  kubectl config current-context
+  623  kubectl get nodes
+  638  kubectl apply -f services/
+  639  kubectl get pod
+  640  kubectl logs deployment/polar-postgres
+  644  kubectl get pod
+  645  kubectl explain polar-postgres-6b785c97b9-96mrh
+  646  kubectl explain deployment
+  658  kubectl apply -f k8s/deployment.yml
+  659  kubectl get all -l app=catalog-service
+  660  kubectl logs deployment/catalog-service
+  662  kubectl apply -f k8s/service.yml
+  663  kubectl get svc -l app=catalog-service
+  664  kubectl port-forward service/catalog-service 9001:80
+  669  kubectl apply -f k8s/deployment.yml
+  670  kubectl get po -l app=catalog-service
+  671  kubectl delete po catalog-service-78f444f8f4-l8qcq
+  672  kubectl get po -l app=catalog-service
+  673  kubectl delete -f k8s
+  680  kubectl delete -f services
+  701  kubectl apply -f services
+  
+  
+Can add to .bashrc
+ 
+getRecentDownload() {
+    windowsDownloadsLocation="/mnt/c/Users/<your_username>/Downloads"
+    fileNameRecentDownload=$(ls -Art $windowsDownloadsLocation | tail -1)
+    mv "$windowsDownloadsLocation/$fileNameRecentDownload" .
+}
+
