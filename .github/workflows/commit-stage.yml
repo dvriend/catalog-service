@@ -21,7 +21,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          cache: maven
+          cache: gradle
       - name: Code vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
@@ -36,8 +36,8 @@ jobs:
           sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Build, unit tests and integration tests
         run: |
-          chmod +x mvnw
-          ./mvnw --batch-mode --update-snapshots package
+          chmod +x gradlew
+          ./gradlew build
       - name: Validate Kubernetes manifests
         uses: stefanprodan/kube-tools@v1
         with:
@@ -62,11 +62,12 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          cache: maven
+          cache: gradle
       - name: Build container image
         run: |
-          chmod +x mvnw
-          ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          chmod +x gradlew
+          ./gradlew bootBuildImage \
+            --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
