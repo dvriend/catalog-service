@@ -3,9 +3,9 @@ custom_build(
     # Name of the container image
     ref = 'catalog-service',
     # Command to build the container image
-    command = './mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$EXPECTED_REF',
+    command = './gradlew bootBuildImage --imageName $EXPECTED_REF',
     # Files to watch that trigger a new build
-    deps = ['pom.xml', './target/classes']
+    deps = ['build.gradle', 'src']
 )
 
 # Deploy
